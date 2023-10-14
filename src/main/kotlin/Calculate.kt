@@ -5,12 +5,14 @@ class Calculate {
         checkArguments(a, b, n, m)
         println("a = $a\nb = $b\nn = $n\nm = $m\nWhole expression = Sum[Sum[Divide[i+j,i-2],{j,$b,$m}],{i,$a,$n}]\n")
         var sum = 0.0
-        for (i: Char in a.toChar()..n.toChar()) {
+        val iRange = a.toChar()..n.toChar()
+        val jRange = b.toChar()..m.toChar()
+        for (i: Char in iRange) {
             val denominator = (i.code.toDouble() - 2)
             if (denominator == 0.0) {
                 throw Exception(ErrorMessages.DENOMINATOR_EQUALS_ZERO.message)
             }
-            for (j: Char in b.toChar()..m.toChar()) {
+            for (j: Char in jRange) {
                 val numerator = (i.code + j.code)
                 sum += numerator / denominator
             }
